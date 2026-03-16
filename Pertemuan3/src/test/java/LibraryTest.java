@@ -65,7 +65,7 @@ public class LibraryTest {
     }
 
     @Test
-    void testCheckAvailability_bookAvailable() {
+    void availableCheckTest() {
         Mockito.when(bookModel.cekKetersediaan(1)).thenReturn(true);
 
         boolean result = control.checkAvailability(1);
@@ -75,7 +75,7 @@ public class LibraryTest {
     }
 
     @Test
-    void testCheckAvailability_bookNotAvailable() {
+    void notAvailableCheckTest() {
         Mockito.when(bookModel.cekKetersediaan(2)).thenReturn(false);
 
         boolean result = control.checkAvailability(2);
@@ -85,7 +85,7 @@ public class LibraryTest {
     }
 
     @Test
-    void testBorrowBook_bookAvailable_borrowCalled() {
+    void testBorrowBook_bookAvailable() {
         List<Book> books = new ArrayList<>();
         books.add(new Book(1, "Intro OOP", "divi"));
 
@@ -98,7 +98,7 @@ public class LibraryTest {
     }
 
     @Test
-    void testBorrowBook_bookNotAvailable_borrowNotCalled() {
+    void testBorrowBook_bookNotAvailable() {
         List<Book> books = new ArrayList<>();
         books.add(new Book(1, "Intro OOP", "divi"));
 

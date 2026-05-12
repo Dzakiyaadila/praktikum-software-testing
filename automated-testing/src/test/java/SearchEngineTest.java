@@ -4,6 +4,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 
 public class SearchEngineTest {
 
@@ -13,20 +21,24 @@ public class SearchEngineTest {
         driver.manage().window().maximize();
         driver.get("https://www.bing.com/");
 
-        WebElement search_bar = driver.findElement(By.id("sb_form_q"));
+        WebElement searchBar = driver.findElement(By.id("sb_form_q"));
 
-        search_bar.sendKeys("ned stark");
+        Actions actions = new Actions(driver);
+        actions.moveToElement(searchBar).click().sendKeys(Keys.ENTER).perform();
 
-        WebElement form = driver.findElement(By.id("sb_form"));
-        form.submit();
+        String query = "ned stark";
+        searchBar.sendKeys(query);
 
-        //assertion title web apakah mengandung quweriehh????
+        searchBar.sendKeys(Keys.ENTER);
+
+        // 5. Validasi hasil (title mengandung query)
         String title = driver.getTitle();
         Assertions.assertTrue(
-                title.contains("ned"), "takdalaaa"
+                title.toLowerCase().contains("ned"),
+                "Title tidak mengandung query"
         );
 
-//driver.quit();
+        // driver.quit();
     }
 }
 
@@ -34,5 +46,5 @@ public class SearchEngineTest {
 /**
  * tugas laprak, buat positive dan negatif
  * di saucedemo itu ada negative dan positifnya.
- *
+ * DOM itu apa?
  */

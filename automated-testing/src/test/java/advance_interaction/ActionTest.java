@@ -23,9 +23,8 @@ public class ActionTest {
         driver.get("https://the-internet.herokuapp.com/hovers");
         WebElement firstImg = driver.findElement(By.xpath("(//div[@class='figure'])[1]"));
 
-        // Melakukan hover ke gambar pertama [cite: 15, 46]
+        // hover ke gambar pertama
         action.moveToElement(firstImg).perform();
-
         WebElement text = driver.findElement(By.xpath("//h5[text()='name: user1']"));
         assertTrue(text.isDisplayed(), "Teks 'name: user1' tidak muncul!");
     }
@@ -36,7 +35,7 @@ public class ActionTest {
         driver.get("https://the-internet.herokuapp.com/key_presses");
         WebElement inputField = driver.findElement(By.id("target"));
 
-        // Menekan tombol SHIFT di dalam input [cite: 15, 49]
+        // tekan tombol shift
         inputField.click();
         action.keyDown(Keys.SHIFT).perform();
 
@@ -51,9 +50,9 @@ public class ActionTest {
         WebElement source = driver.findElement(By.id("column-a"));
         WebElement target = driver.findElement(By.id("column-b"));
 
+        //drag box b (source) ke box a (target)
         action.dragAndDrop(source, target).perform();
-
-        // Assert box A sekarang berisi teks 'B' karena sudah bertukar
+        //assert box a = b
         assertEquals("B", source.findElement(By.tagName("header")).getText());
     }
 
